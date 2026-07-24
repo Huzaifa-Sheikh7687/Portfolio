@@ -138,10 +138,10 @@ export const projects = [
     tags: ['Computer Vision', 'Deep Learning'],
   },
   {
-    title: 'Power BI Business Dashboard',
-    description: 'An interactive dashboard surfacing KPIs and visual insights for business reporting.',
-    tech: ['Power BI', 'SQL', 'Excel'],
-    tags: ['Data Visualization', 'Reporting'],
+    title: 'Portfolio',
+    description: 'A personal portfolio built with React to showcase my work, technical skills, and professional experience.',
+    tech: ['Html', 'Tailwind Css', 'Javascript'],
+    tags: ['React', 'Vercel Deployment'],
   },
   {
     title: 'University Management System',
