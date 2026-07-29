@@ -50,7 +50,7 @@ export default function Projects() {
 
               <div className="mt-6 flex gap-4 opacity-0 transition-opacity group-hover:opacity-100">
                 <a
-                  href={personal.github}
+                  href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white"

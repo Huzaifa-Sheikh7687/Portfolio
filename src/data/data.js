@@ -130,24 +130,28 @@ export const projects = [
     description: 'A conversational assistant built with React and the OpenAI API, deployed on Vercel.',
     tech: ['React', 'OpenAI API', 'JavaScript', 'CSS'],
     tags: ['AI Chat', 'Responsive UI', 'Vercel Deployment'],
+    github: 'https://github.com/Huzaifa-Sheikh7687/Huzaifa-s-Assistant-AI.git',
   },
   {
     title: 'Facial Emotion Recognition',
     description: 'A deep learning model using TensorFlow and OpenCV that detects human emotions from live webcam input.',
     tech: ['Python', 'TensorFlow', 'OpenCV'],
     tags: ['Computer Vision', 'Deep Learning'],
+    github: 'https://github.com/Huzaifa-Sheikh7687/Facial-Expression-Recognition-Model.git',
   },
   {
     title: 'Portfolio',
     description: 'A personal portfolio built with React to showcase my work, technical skills, and professional experience.',
     tech: ['Html', 'Tailwind Css', 'Javascript'],
     tags: ['React', 'Vercel Deployment'],
+    github: 'https://github.com/Huzaifa-Sheikh7687/Portfolio.git',
   },
   {
     title: 'University Management System',
     description: 'A full CRUD application with relational database integration for managing student records.',
     tech: ['React', 'SQL', 'JavaScript'],
     tags: ['Full-Stack', 'CRUD'],
+    github: 'https://github.com/Huzaifa-Sheikh7687/University-Management-System.git',
   },
 ]
 
