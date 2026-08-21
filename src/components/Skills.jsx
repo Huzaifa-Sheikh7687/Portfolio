@@ -5,11 +5,11 @@ import { skillGroups, softSkills } from '../data/data'
 function SkillBar({ name, level }) {
   return (
     <div>
-      <div className="mb-1.5 flex justify-between text-sm text-white/70">
+      <div className="mb-1.5 flex justify-between text-sm text-slate-600">
         <span>{name}</span>
-        <span className="font-mono-data text-xs text-white/40">{level}%</span>
+        <span className="font-mono-data text-xs text-slate-400">{level}%</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-white/5">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-900/8">
         <motion.div
           className="h-full rounded-full bg-grad-primary"
           initial={{ width: 0 }}
@@ -60,7 +60,7 @@ export default function Skills() {
           {softSkills.map((s) => (
             <span
               key={s}
-              className="glass rounded-full px-4 py-2 text-xs font-medium text-white/70"
+              className="glass rounded-full px-4 py-2 text-xs font-medium text-slate-600"
             >
               {s}
             </span>

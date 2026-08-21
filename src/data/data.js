@@ -1,11 +1,11 @@
 export const personal = {
   name: 'Huzaifa Sheikh',
-  role: 'Data Analyst | Data Scientist | AI Engineer | Frontend Developer',
+  role: 'Data Analyst | Data Scientist | AI Engineer | MERN Stack Developer',
   typedRoles: [
     'Data Analyst',
     'Data Scientist',
     'AI Engineer',
-    'Frontend Developer',
+    'MERN Stack Developer',
   ],
   tagline:
     "I specialize in transforming data into business insights, building AI driven applications, and crafting fast, responsive web experiences with React. My expertise spans Data Analytics, Data Science, AI Engineering, and Frontend Development, enabling me to deliver intelligent, scalable, and user focused solutions.",
@@ -52,6 +52,33 @@ export const skillGroups = [
     ],
   },
   {
+  title: 'Backend',
+  items: [
+    { name: 'Node.js', level: 78 },
+    { name: 'Express.js', level: 75 },
+    { name: 'REST API', level: 72 },
+    { name: 'JWT / Authentication', level: 65 },
+  ],
+  },  
+  {
+  title: 'Database',
+  items: [
+    { name: 'MongoDB', level: 75 },
+    { name: 'MySQL', level: 70 },
+    { name: 'Microsoft SQL Server', level: 60 },
+    { name: 'SQLite', level: 65 },
+  ],
+  },
+  {
+  title: 'Deployment',
+  items: [
+    { name: 'Vercel', level: 85 },
+    { name: 'Netlify', level: 80 },
+    { name: 'Render', level: 70 },
+    { name: 'GitHub Actions', level: 60 },
+  ],
+  },
+  {
     title: 'Data Analytics',
     items: [
       { name: 'MySQL', level: 82 },
@@ -91,15 +118,15 @@ export const experience = [
     ],
   },
   {
-    role: 'School Teacher & Head of Management',
-    org: 'Spring Dale Grammar School Secondary',
-    duration: 'Jan 2022 – Jan 2026',
-    points: [
-      'Teaching Math & Physics at the secondary level for 4+ years.',
-      'Overseeing staff coordination, scheduling, and resource planning.',
-      'Managing academic operations alongside classroom delivery.',
-      'Supporting students while handling departmental management.',
-    ],
+    role: 'Junior Data Analyst',
+    org: 'Cortellect (Internship)',
+    duration: 'Jan 2026 – Apr 2026',
+points: [
+  'Conducted in-depth data analysis to uncover key business trends and patterns.',
+  'Created dynamic Power BI dashboards to streamline business reporting.',
+  'Developed and executed SQL queries for efficient data extraction and transformation.',
+  'Delivered data-backed insights to support informed business decisions.',
+],
   },
 ]
 

@@ -27,7 +27,7 @@ export default function Navbar() {
       <nav className="glass mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-2xl px-5 py-3 md:px-8">
         <button
           onClick={() => handleClick("home")}
-          className="font-display text-lg font-semibold tracking-tight text-white"
+          className="font-display text-lg font-semibold tracking-tight text-slate-900"
         >
           <span className="text-gradient">PORTFOLIO</span>
         </button>
@@ -39,14 +39,14 @@ export default function Navbar() {
                 onClick={() => handleClick(l.id)}
                 className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active === l.id
-                    ? "text-white"
-                    : "text-white/60 hover:text-white"
+                    ? "text-slate-900"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 {active === l.id && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-white/10"
+                    className="absolute inset-0 rounded-full bg-slate-900/8"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -57,7 +57,7 @@ export default function Navbar() {
         </ul>
 
         <button
-          className="text-white md:hidden"
+          className="text-slate-900 md:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle navigation menu"
         >
@@ -78,7 +78,7 @@ export default function Navbar() {
                 key={l.id}
                 onClick={() => handleClick(l.id)}
                 className={`rounded-lg px-4 py-3 text-left text-sm font-medium ${
-                  active === l.id ? "bg-white/10 text-white" : "text-white/70"
+                  active === l.id ? "bg-slate-900/8 text-slate-900" : "text-slate-600"
                 }`}
               >
                 {l.label}

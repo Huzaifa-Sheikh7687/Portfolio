@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import SectionHeading from "./SectionHeading";
-import { projects } from "../data/data";
-import { personal } from "../data/data";
+import { projects, personal } from "../data/data";
 
 export default function Projects() {
   return (
@@ -17,23 +16,28 @@ export default function Projects() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.55, delay: (i % 2) * 0.1 }}
+              transition={{
+                duration: 0.55,
+                delay: (i % 2) * 0.1,
+              }}
               className="glass group rounded-2xl p-6 transition-transform hover:-translate-y-1.5 hover:shadow-glowPurple"
             >
               <div className="mb-4 flex flex-wrap gap-2">
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full bg-white/5 px-3 py-1 text-[11px] font-medium text-white/50"
+                    className="rounded-full bg-slate-900/5 px-3 py-1 text-[11px] font-medium text-slate-500"
                   >
                     {t}
                   </span>
                 ))}
               </div>
-              <h3 className="font-display text-xl font-semibold text-white">
+
+              <h3 className="font-display text-xl font-semibold text-slate-900">
                 {p.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">
+
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {p.description}
               </p>
 
@@ -53,9 +57,10 @@ export default function Projects() {
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white"
+                  className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900"
                 >
-                  <FiGithub /> GitHub
+                  <FiGithub />
+                  GitHub
                 </a>
               </div>
             </motion.div>

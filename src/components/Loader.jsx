@@ -21,7 +21,7 @@ export default function Loader({ show }) {
                 Welcome to Huzaifa's Portfolio
               </span>
             </motion.div>
-            <div className="h-1 w-48 overflow-hidden rounded-full bg-white/10">
+            <div className="h-1 w-48 overflow-hidden rounded-full bg-slate-900/10">
               <motion.div
                 className="h-full bg-grad-primary"
                 initial={{ x: "-100%" }}

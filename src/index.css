@@ -8,8 +8,8 @@
 
 html,
 body {
-  background-color: #05070d;
-  color: #e7eaf3;
+  background-color: #f6f7fc;
+  color: #1b2030;
 }
 
 body {
@@ -33,7 +33,7 @@ h4,
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #05070d;
+  background: #eef1f8;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6, #8b5cf6);
@@ -52,17 +52,19 @@ h4,
 }
 
 .glass {
-  background: rgba(16, 22, 42, 0.55);
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  box-shadow: 0 4px 24px -8px rgba(30, 41, 59, 0.12);
 }
 
 .glass-strong {
-  background: rgba(11, 15, 26, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 8px 32px -8px rgba(30, 41, 59, 0.16);
 }
 
 .text-gradient {
@@ -89,5 +91,5 @@ h4,
 
 .query-label::before {
   content: "$ ";
-  color: #06b6d4;
+  color: #0891b2;
 }

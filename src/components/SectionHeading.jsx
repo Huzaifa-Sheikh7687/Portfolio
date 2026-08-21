@@ -12,8 +12,8 @@ export default function SectionHeading({ eyebrow, title, subtitle }) {
       {eyebrow && (
         <p className="section-eyebrow font-mono-data text-xs uppercase text-accent">{eyebrow}</p>
       )}
-      <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-3 text-sm text-white/50">{subtitle}</p>}
+      <h2 className="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">{title}</h2>
+      {subtitle && <p className="mt-3 text-sm text-slate-500">{subtitle}</p>}
     </motion.div>
   )
 }

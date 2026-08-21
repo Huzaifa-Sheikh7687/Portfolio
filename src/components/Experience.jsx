@@ -9,7 +9,7 @@ export default function Experience() {
       <div className="mx-auto max-w-4xl px-6 md:px-8">
         <SectionHeading eyebrow="Where I've worked" title="Experience" />
 
-        <div className="relative border-l border-white/10 pl-8">
+        <div className="relative border-l border-slate-900/12 pl-8">
           {experience.map((exp, i) => (
             <motion.div
               key={exp.role}
@@ -24,13 +24,13 @@ export default function Experience() {
               </span>
               <div className="glass rounded-2xl p-6">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-display text-lg font-semibold text-white">{exp.role}</h3>
+                  <h3 className="font-display text-lg font-semibold text-slate-900">{exp.role}</h3>
                   <span className="font-mono-data text-xs text-accent">{exp.duration}</span>
                 </div>
                 <p className="mt-1 text-sm font-medium text-secondary">{exp.org}</p>
                 <ul className="mt-4 space-y-2">
                   {exp.points.map((pt) => (
-                    <li key={pt} className="flex gap-2 text-sm text-white/60">
+                    <li key={pt} className="flex gap-2 text-sm text-slate-600">
                       <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                       {pt}
                     </li>

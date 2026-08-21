@@ -20,16 +20,16 @@ export default function Education() {
               className="glass flex flex-col rounded-2xl p-6"
             >
               <FiBookOpen className="mb-3 text-2xl text-primary" />
-              <h3 className="font-display text-base font-semibold text-white">{ed.degree}</h3>
+              <h3 className="font-display text-base font-semibold text-slate-900">{ed.degree}</h3>
               <p className="mt-1 text-sm text-secondary">{ed.school}</p>
               <p className="mt-3 font-mono-data text-xs text-accent">{ed.duration}</p>
-              <p className="mt-1 text-sm text-white/60">{ed.detail}</p>
+              <p className="mt-1 text-sm text-slate-600">{ed.detail}</p>
               {ed.focus && (
                 <div className="mt-4 flex flex-wrap gap-2">
                   {ed.focus.map((f) => (
                     <span
                       key={f}
-                      className="rounded-full bg-white/5 px-3 py-1 text-[11px] text-white/50"
+                      className="rounded-full bg-slate-900/5 px-3 py-1 text-[11px] text-slate-500"
                     >
                       {f}
                     </span>

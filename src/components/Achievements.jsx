@@ -22,8 +22,8 @@ export default function Achievements() {
                 <FiAward size={16} />
               </span>
               <div>
-                <h3 className="font-display text-sm font-semibold text-white">{a.title}</h3>
-                <p className="mt-1 text-xs text-white/55">{a.desc}</p>
+                <h3 className="font-display text-sm font-semibold text-slate-900">{a.title}</h3>
+                <p className="mt-1 text-xs text-slate-500">{a.desc}</p>
               </div>
             </motion.div>
           ))}

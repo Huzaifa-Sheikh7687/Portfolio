@@ -27,7 +27,7 @@ export default function About() {
             className="md:col-span-3 space-y-5"
           >
             {about.paragraphs.map((p, i) => (
-              <p key={i} className="text-white/65 leading-relaxed">
+              <p key={i} className="text-slate-600 leading-relaxed">
                 {p}
               </p>
             ))}
@@ -48,7 +48,7 @@ export default function About() {
                   className="glass flex flex-col items-center gap-2 rounded-2xl p-5 text-center transition-transform hover:-translate-y-1 hover:shadow-glow"
                 >
                   <Icon className="text-2xl text-primary" />
-                  <span className="text-xs font-medium text-white/75">{label}</span>
+                  <span className="text-xs font-medium text-slate-700">{label}</span>
                 </div>
               )
             })}
