@@ -122,11 +122,20 @@ export const experience = [
     org: 'Cortellect (Internship)',
     duration: 'Jan 2026 – Apr 2026',
 points: [
-  'Conducted in-depth data analysis to uncover key business trends and patterns.',
+  'Conducted in depth data analysis to uncover key business trends and patterns.',
   'Created dynamic Power BI dashboards to streamline business reporting.',
   'Developed and executed SQL queries for efficient data extraction and transformation.',
-  'Delivered data-backed insights to support informed business decisions.',
+  'Delivered data backed insights to support informed business decisions.',
 ],
+  },
+]
+
+export const certificates = [
+  {
+    previewLabel: 'Data Analyst',
+    title: 'Certificate of Performance',
+    org: 'Cortellect  (International Software House)',
+    file: '/Performance_Certificate_Huzaifa_Sheikh.pdf',
   },
 ]
 
@@ -190,4 +199,3 @@ export const achievements = [
   { title: 'SQL Database Projects', desc: 'Designed and queried relational databases end-to-end.' },
   { title: 'Continuous Learner', desc: 'Consistently picking up new tools across AI and web development.' },
 ]
-
