@@ -107,6 +107,17 @@ export const softSkills = [
 
 export const experience = [
   {
+    role: 'MERN Stack Developer',
+    org: 'CodeDazzle Solution',
+    duration: 'Dec 2024 – Jun 2025',
+    points: [
+      'Developed responsive web applications using MongoDB, Express.js, React.js, and Node.js.',
+      'Built reusable and interactive React components to deliver user-friendly web interfaces.',
+      'Developed RESTful APIs using Node.js and Express.js for seamless frontend-backend integration.',
+      'Designed and managed MongoDB databases, including data modeling, CRUD operations, and database integration.',
+    ],
+  },
+  {
     role: 'Junior Data Analyst',
     org: 'CodeDazzle Solution (Internship)',
     duration: 'Aug 2025 – Nov 2025',
