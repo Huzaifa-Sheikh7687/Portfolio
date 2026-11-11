@@ -65,6 +65,38 @@ export default function BlogReaderModal({ blog, onClose }) {
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
+        {/* Dynamic SEO JSON-LD schema for Google Search & Rich Results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": blog.title,
+              "description": blog.excerpt,
+              "image": blog.coverImage?.startsWith("http")
+                ? blog.coverImage
+                : `https://huzaifa-sheikh-portfolio.vercel.app${blog.coverImage}`,
+              "datePublished": blog.date,
+              "dateModified": blog.date,
+              "author": {
+                "@type": "Person",
+                "name": blog.author?.name || "Huzaifa Sheikh",
+                "url": "https://huzaifa-sheikh-portfolio.vercel.app"
+              },
+              "publisher": {
+                "@type": "Person",
+                "name": "Huzaifa Sheikh"
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://huzaifa-sheikh-portfolio.vercel.app/#blog-${blog.slug}`
+              },
+              "keywords": blog.tags?.join(", ")
+            })
+          }}
+        />
+
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}

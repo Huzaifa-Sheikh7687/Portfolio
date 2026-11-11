@@ -126,7 +126,11 @@ export default function Hero() {
           <div className="glass-strong relative flex h-full w-full items-center justify-center overflow-hidden rounded-full border border-slate-900/10">
             <img
               src="/profile-pic.png"
-              alt={personal.name}
+              alt="Huzaifa Sheikh — Data Analyst, Data Scientist and AI Engineer"
+              fetchPriority="high"
+              loading="eager"
+              width="384"
+              height="384"
               className="h-full w-full rounded-full object-cover"
             />
           </div>
