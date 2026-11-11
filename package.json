@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "framer-motion": "^11.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.0",
-    "framer-motion": "^11.3.0",
     "react-icons": "^5.2.1",
-    "@emailjs/browser": "^4.3.3",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^6.26.0",
+    "remark-gfm": "^4.0.1",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {

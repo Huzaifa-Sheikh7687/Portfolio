@@ -1,0 +1,43 @@
+name: Daily AI Blog Generator
+
+on:
+  schedule:
+    # Runs everyday at 06:00 UTC (11:00 AM PKT)
+    - cron: '0 6 * * *'
+  # Allows you to manually trigger the workflow from the GitHub Actions tab anytime
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate AI Blog & Featured Cover Image
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/generate_blog.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.name "Huzaifa AI Blog Bot"
+          git config --local user.email "bot@huzaifasheikh.com"
+          git add src/data/blogs.json public/blog-images/ public/sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No new blog changes to commit."
+          else
+            git commit -m "🤖 Auto-blog: New article published [skip ci]"
+            git push
+          fi
