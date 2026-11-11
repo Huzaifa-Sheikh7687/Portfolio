@@ -241,8 +241,15 @@ def generate_with_gemini(api_key, trending_topics, existing_titles):
     ]
     
     prompt = f"""
-You are writing a top-tier industrial Data Science and Machine Learning technical article for Huzaifa Sheikh's portfolio website.
-Huzaifa is a Data Analyst and AI Engineer with expertise in Python, Machine Learning, Deep Learning, SQL, Power BI, and MLOps.
+You are writing an authentic, practical Data Science & Machine Learning engineering blog for Huzaifa Sheikh's portfolio website.
+Huzaifa is a Computer Science student at IQRA University and Junior Data Analyst / AI Engineer with real project experience in Python, SQL, Machine Learning, Power BI, and Deep Learning.
+
+TONE & STYLE:
+- NOT generic corporate marketing or Wikipedia theory!
+- Write from an authentic student-to-professional engineering perspective: identify a REAL, practical problem students/engineers face (e.g. out-of-memory errors in pandas, high inference latency, target leakage when shuffling time-series, CUDA OOM when fine-tuning models, SQL queries taking minutes instead of milliseconds).
+- Explain what textbooks teach vs what actually breaks in real code.
+- Provide clean, working Python / SQL code snippets.
+- End with actionable takeaways for students and junior developers.
 
 Current trending tech signals:
 {json.dumps(trending_topics, indent=2)}
@@ -251,47 +258,23 @@ Existing blog titles (DO NOT DUPLICATE OR OVERLAP):
 {json.dumps(existing_titles, indent=2)}
 
 TASK:
-Pick ONE practical, high-value topic strictly in DATA SCIENCE, MACHINE LEARNING, DEEP LEARNING, or MLOps (student, professional, and industrial grade level).
-Examples:
-- Distributed training with PyTorch FSDP
-- Real-time time series anomaly detection
-- Vector embeddings and Approximate Nearest Neighbor index scaling
-- Graph Neural Networks for fraud detection
-- Feature store architectures & time-travel joins
-- Model quantization (AWQ vs GPTQ vs GGUF)
+Pick ONE practical, high-value problem in DATA SCIENCE, MACHINE LEARNING, DEEP LEARNING, or MLOps.
+Write a transparent, realistic, and rigorous technical blog post.
 
 FORMAT:
 Respond ONLY with a valid JSON object matching this schema:
 {{
-  "title": "A catchy, authoritative, industrial title",
+  "title": "A catchy, practical title (e.g., 'How I Solved X: ...' or 'Why My Y Failed: ...')",
   "slug": "kebab-case-slug-without-special-characters",
-  "category": "Machine Learning" (choose one of: Machine Learning, Data Science, Deep Learning, MLOps),
+  "category": "Data Science" (choose one of: Data Science, Machine Learning, Deep Learning, MLOps),
   "tags": ["Tag1", "Tag2", "Tag3", "Tag4"],
   "readTime": "6 min read",
-  "excerpt": "A compelling 2-sentence hook and summary.",
+  "excerpt": "A compelling 2-sentence hook about the problem and how it was solved.",
   "metaTitle": "SEO title under 60 chars | Huzaifa Sheikh",
   "metaDescription": "SEO meta description under 160 chars.",
   "keywords": "comma, separated, keywords",
-  "infographic": {{
-    "subtitle": "Short 1-line architecture subtitle",
-    "quote": "A punchy engineering takeaway quote",
-    "config_name": "pipeline-spec.yaml",
-    "card1_title": "Component 1 Title",
-    "card1_desc": "Component 1 explanation",
-    "card2_title": "Component 2 Title",
-    "card2_desc": "Component 2 explanation",
-    "card3_title": "Component 3 Title",
-    "card3_desc": "Component 3 explanation",
-    "metric1_name": "p99-latency",
-    "metric1_val": "12.4ms",
-    "metric2_name": "throughput-qps",
-    "metric2_val": "4,200 req/s",
-    "metric3_name": "cache-hit-rate",
-    "metric3_val": "99.2%",
-    "metric4_name": "eval-score",
-    "metric4_val": "96.4%"
-  }},
-  "content": "Full markdown content starting with ## headers. Include practical architecture explanations, tables, bullet points, real-world case studies, and Python/SQL code snippets formatted in markdown. Tone: Senior Data Scientist / ML Engineer."
+  "infographic_style": 1 (integer from 1 to 4 to rotate visual templates),
+  "content": "Full markdown content with ## 1. The Realistic Problem, ## 2. Why Naive Approaches Fail, ## 3. The Step-by-Step Fix (with Python/SQL code), ## 4. Student & Junior Developer Takeaways."
 }}
 """
 

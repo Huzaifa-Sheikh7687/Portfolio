@@ -21,10 +21,9 @@ export default function Blogs() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeBlog, setActiveBlog] = useState(null);
   const [showAllArchive, setShowAllArchive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const sliderRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
   // Extract all unique categories
   const categories = useMemo(() => {
@@ -50,29 +49,6 @@ export default function Blogs() {
     return () => window.removeEventListener("hashchange", checkHash);
   }, []);
 
-  // Check slider scroll position to toggle arrow buttons
-  const checkScroll = () => {
-    if (!sliderRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-  };
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (slider) {
-      slider.addEventListener("scroll", checkScroll);
-      checkScroll();
-      return () => slider.removeEventListener("scroll", checkScroll);
-    }
-  }, [blogs]);
-
-  const scroll = (direction) => {
-    if (!sliderRef.current) return;
-    const offset = direction === "left" ? -390 : 390;
-    sliderRef.current.scrollBy({ left: offset, behavior: "smooth" });
-  };
-
   // Filter blogs based on category & search
   const filteredBlogs = useMemo(() => {
     return blogs.filter((blog) => {
@@ -90,8 +66,39 @@ export default function Blogs() {
     });
   }, [blogs, selectedCategory, searchQuery]);
 
-  // Featured 3 latest blogs for the front view
-  const latestThree = useMemo(() => blogs.slice(0, 3), [blogs]);
+  // Track active slide index from scroll position
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+    const { scrollLeft, clientWidth } = sliderRef.current;
+    const cardWidth = 360; // approximate card step
+    const newIdx = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(Math.min(newIdx, filteredBlogs.length - 1));
+  };
+
+  const scrollToCard = (index) => {
+    if (!sliderRef.current) return;
+    const cards = sliderRef.current.children;
+    if (cards[index]) {
+      cards[index].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+      setActiveIndex(index);
+    }
+  };
+
+  const handleNext = () => {
+    if (!sliderRef.current) return;
+    const nextIdx = (activeIndex + 1) % filteredBlogs.length;
+    scrollToCard(nextIdx);
+  };
+
+  const handlePrev = () => {
+    if (!sliderRef.current) return;
+    const prevIdx = activeIndex === 0 ? filteredBlogs.length - 1 : activeIndex - 1;
+    scrollToCard(prevIdx);
+  };
 
   return (
     <section id="blogs" className="relative bg-ink py-28 overflow-hidden">
@@ -102,8 +109,8 @@ export default function Blogs() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "Huzaifa Sheikh - Data Science & Machine Learning Engineering",
-            "description": "Industrial-grade deep-dives into Machine Learning, Feature Stores, Vector Search, and Advanced Data Analytics.",
+            "name": "Huzaifa Sheikh - Data Science & AI Systems",
+            "description": "Realistic engineering post-mortems and industrial deep-dives into Data Science, Machine Learning, and Production Pipelines.",
             "url": "https://huzaifa-sheikh-portfolio.vercel.app/#blogs",
             "author": {
               "@type": "Person",
@@ -128,9 +135,9 @@ export default function Blogs() {
 
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <SectionHeading
-          eyebrow="Industrial Engineering Insights"
-          title="Data Science & ML Systems"
-          subtitle="Production-grade architectures, statistical algorithms, and scalable MLOps deep-dives."
+          eyebrow="Practical Engineering Journey"
+          title="Data Science & ML Deep-Dives"
+          subtitle="Realistic post-mortems, hands-on debugging, and industrial architectures from student projects to production."
         />
 
         {/* Top Controls Bar */}
@@ -140,7 +147,11 @@ export default function Blogs() {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setActiveIndex(0);
+                  if (sliderRef.current) sliderRef.current.scrollLeft = 0;
+                }}
                 className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
                   selectedCategory === cat
                     ? "bg-slate-900 text-white shadow-md shadow-slate-900/10"
@@ -154,29 +165,21 @@ export default function Blogs() {
 
           {/* Navigation Controls: Slider Left/Right Arrows + Mode Toggle */}
           <div className="flex items-center gap-3">
-            {!showAllArchive && (
+            {!showAllArchive && filteredBlogs.length > 1 && (
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => scroll("left")}
-                  disabled={!canScrollLeft}
-                  className={`rounded-full p-2.5 transition-all ${
-                    canScrollLeft
-                      ? "glass text-slate-800 hover:bg-white hover:shadow-md cursor-pointer"
-                      : "opacity-40 text-slate-400 cursor-not-allowed border border-slate-200"
-                  }`}
-                  aria-label="Scroll left"
+                  onClick={handlePrev}
+                  className="rounded-full p-2.5 glass text-slate-800 hover:bg-white hover:text-primary hover:shadow-md transition cursor-pointer active:scale-95 border border-slate-200/80"
+                  aria-label="Previous article"
+                  title="Previous article"
                 >
                   <FiChevronLeft size={18} />
                 </button>
                 <button
-                  onClick={() => scroll("right")}
-                  disabled={!canScrollRight}
-                  className={`rounded-full p-2.5 transition-all ${
-                    canScrollRight
-                      ? "glass text-slate-800 hover:bg-white hover:shadow-md cursor-pointer"
-                      : "opacity-40 text-slate-400 cursor-not-allowed border border-slate-200"
-                  }`}
-                  aria-label="Scroll right"
+                  onClick={handleNext}
+                  className="rounded-full p-2.5 glass text-slate-800 hover:bg-white hover:text-primary hover:shadow-md transition cursor-pointer active:scale-95 border border-slate-200/80"
+                  aria-label="Next article"
+                  title="Next article"
                 >
                   <FiChevronRight size={18} />
                 </button>
@@ -223,21 +226,22 @@ export default function Blogs() {
           </motion.div>
         )}
 
-        {/* MODE 1: Horizontal Slider / Carousel View */}
+        {/* MODE 1: Horizontal Slider / Carousel View with visible overflow peek */}
         {!showAllArchive ? (
           <div>
             <div
               ref={sliderRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 pb-6 no-scrollbar"
+              onScroll={handleScroll}
+              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 pb-6 px-1"
               style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#CBD5E1 transparent",
               }}
             >
               {filteredBlogs.map((blog, idx) => (
                 <div
                   key={blog.id || blog.slug}
-                  className="w-[310px] sm:w-[350px] md:w-[365px] flex-shrink-0 snap-start"
+                  className="w-[88%] sm:w-[48%] lg:w-[31.6%] min-w-[290px] max-w-[380px] flex-shrink-0 snap-start"
                 >
                   <motion.article
                     initial={{ opacity: 0, y: 20 }}
@@ -245,18 +249,17 @@ export default function Blogs() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: (idx % 3) * 0.08 }}
                     onClick={() => setActiveBlog(blog)}
-                    className="glass group flex flex-col h-full overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-glow cursor-pointer border border-slate-200/80 bg-white/90"
+                    className="glass group flex flex-col h-full overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-glow cursor-pointer border border-slate-200/80 bg-white"
                   >
-                    {/* Architectural Infographic Thumbnail Container */}
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 border-b border-slate-100">
+                    {/* Unique Infographic Banner */}
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 border-b border-slate-100">
                       <img
                         src={blog.coverImage}
                         alt={blog.title}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-40" />
 
-                      {/* Category Pill on Image */}
+                      {/* Category Badge on Image */}
                       <span className="absolute top-3 left-3 rounded-full bg-slate-900/90 backdrop-blur-md px-3 py-1 text-[10px] font-semibold text-white shadow-sm border border-slate-700/50">
                         {blog.category}
                       </span>
@@ -268,9 +271,8 @@ export default function Blogs() {
                       </span>
                     </div>
 
-                    {/* Card Content Body */}
+                    {/* Card Body */}
                     <div className="flex flex-1 flex-col p-6">
-                      {/* Date */}
                       <div className="mb-2.5 flex items-center justify-between text-xs text-slate-500">
                         <span className="inline-flex items-center gap-1.5 font-medium text-[11px]">
                           <FiCalendar className="text-primary" />
@@ -278,22 +280,19 @@ export default function Blogs() {
                         </span>
                         {idx === 0 && (
                           <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-600 border border-emerald-200">
-                            LATEST
+                            NEWEST
                           </span>
                         )}
                       </div>
 
-                      {/* Title */}
                       <h3 className="font-display text-base font-bold leading-snug text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                         {blog.title}
                       </h3>
 
-                      {/* Excerpt */}
                       <p className="mt-2 text-xs leading-relaxed text-slate-600 line-clamp-3 flex-1">
                         {blog.excerpt}
                       </p>
 
-                      {/* Tags */}
                       {blog.tags && blog.tags.length > 0 && (
                         <div className="mt-4 flex flex-wrap gap-1.5">
                           {blog.tags.slice(0, 3).map((tag) => (
@@ -307,10 +306,9 @@ export default function Blogs() {
                         </div>
                       )}
 
-                      {/* Read Article Action */}
                       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs font-semibold text-primary">
                         <span className="inline-flex items-center gap-1 group-hover:underline">
-                          Read Full Deep-Dive
+                          Read Case Study
                         </span>
                         <FiArrowRight className="transform transition-transform group-hover:translate-x-1" />
                       </div>
@@ -320,18 +318,38 @@ export default function Blogs() {
               ))}
             </div>
 
-            {/* Slider Indicator & Hint */}
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 border-t border-slate-200/60 pt-4">
-              <span className="flex items-center gap-1.5 font-medium">
-                <FiLayers className="text-primary" />
-                Showing latest industrial deep-dives. Swipe or click arrows to explore.
-              </span>
-              <button
-                onClick={() => setShowAllArchive(true)}
-                className="mt-2 sm:mt-0 font-semibold text-primary hover:underline inline-flex items-center gap-1"
-              >
-                View all {blogs.length} articles in grid mode →
-              </button>
+            {/* Slider Dots Navigation + Indicators */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 border-t border-slate-200/60 pt-4">
+              {/* Pagination Dots */}
+              <div className="flex items-center gap-2">
+                {filteredBlogs.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => scrollToCard(i)}
+                    className={`h-2 rounded-full transition-all ${
+                      activeIndex === i
+                        ? "w-7 bg-primary"
+                        : "w-2 bg-slate-300 hover:bg-slate-400"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+                <span className="ml-2 font-mono-data text-[11px] text-slate-500">
+                  {activeIndex + 1} of {filteredBlogs.length}
+                </span>
+              </div>
+
+              <div className="mt-2 sm:mt-0 flex items-center gap-4">
+                <span className="text-slate-400 hidden md:inline">
+                  Use arrow buttons or swipe horizontally
+                </span>
+                <button
+                  onClick={() => setShowAllArchive(true)}
+                  className="font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                >
+                  View all in grid mode →
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -344,16 +362,14 @@ export default function Blogs() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: (idx % 3) * 0.08 }}
                 onClick={() => setActiveBlog(blog)}
-                className="glass group flex flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-glow cursor-pointer border border-slate-200/80 bg-white/90"
+                className="glass group flex flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-glow cursor-pointer border border-slate-200/80 bg-white"
               >
-                {/* Architectural Infographic Thumbnail */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 border-b border-slate-100">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 border-b border-slate-100">
                   <img
                     src={blog.coverImage}
                     alt={blog.title}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-40" />
 
                   <span className="absolute top-3 left-3 rounded-full bg-slate-900/90 backdrop-blur-md px-3 py-1 text-[10px] font-semibold text-white shadow-sm border border-slate-700/50">
                     {blog.category}
@@ -365,7 +381,6 @@ export default function Blogs() {
                   </span>
                 </div>
 
-                {/* Card Content Body */}
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-2.5 flex items-center justify-between text-xs text-slate-500">
                     <span className="inline-flex items-center gap-1.5 font-medium text-[11px]">
@@ -397,7 +412,7 @@ export default function Blogs() {
 
                   <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs font-semibold text-primary">
                     <span className="inline-flex items-center gap-1 group-hover:underline">
-                      Read Full Deep-Dive
+                      Read Case Study
                     </span>
                     <FiArrowRight className="transform transition-transform group-hover:translate-x-1" />
                   </div>
