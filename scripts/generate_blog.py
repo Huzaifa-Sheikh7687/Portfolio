@@ -86,7 +86,13 @@ def generate_with_gemini(api_key, trending_topics, existing_titles):
     """Generate article content via Google Gemini API (Free tier)."""
     print("🤖 Calling Google Gemini API to write high quality technical blog...")
 
-    models = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+    models = [
+        "gemini-2.5-flash",
+        "gemini-3.8-flash",
+        "gemini-flash-latest",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash"
+    ]
     
     prompt = f"""
 You are writing a top-tier technical blog article for Huzaifa Sheikh's portfolio website.
