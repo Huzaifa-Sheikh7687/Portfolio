@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#080E1A" />
+            <stop offset="50%" stop-color="#0F172A" />
+            <stop offset="100%" stop-color="#050B14" />
+        </linearGradient>
+        <radialGradient id="glow" cx="20%" cy="30%" r="50%">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.15" />
+            <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="glowRight" cx="80%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#818CF8" stop-opacity="0.12" />
+            <stop offset="100%" stop-color="#818CF8" stop-opacity="0" />
+        </radialGradient>
+        <pattern id="gridDots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="#334155" fill-opacity="0.3" />
+        </pattern>
+        <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="60%" stop-color="#38BDF8" />
+            <stop offset="100%" stop-color="#818CF8" />
+        </linearGradient>
+    </defs>
+
+    <!-- Canvas Background -->
+    <rect width="1200" height="630" fill="url(#bgGrad)" />
+    <rect width="1200" height="630" fill="url(#glow)" />
+    <rect width="1200" height="630" fill="url(#glowRight)" />
+    <rect width="1200" height="630" fill="url(#gridDots)" />
+
+    <!-- Top Border Line & Eyebrow -->
+    <line x1="60" y1="50" x2="1140" y2="50" stroke="#1E293B" stroke-width="1.5" />
+    <text x="60" y="40" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#38BDF8" letter-spacing="2">— DEEP LEARNING ARCHITECTURE • 2026</text>
+    <text x="1140" y="40" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="500" fill="#64748B" text-anchor="end">PRODUCTION DEPLOYED</text>
+
+    <!-- Main Title & Subtitle -->
+    <text x="60" y="95" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="34" fill="url(#titleGrad)">Industrial LLM Fine-Tuning:</text>
+    <text x='60' y='135' font-family="'Space Grotesk', sans-serif" font-weight='700' font-size='34' fill='url(#titleGrad)'>QLoRA &amp; 4-Bit NF4</text>
+    <text x="60" y="170" font-family="'Inter', sans-serif" font-size="15" fill="#94A3B8">Parameter-efficient adaptation scaling from single GPUs to production clusters.</text>
+
+    <!-- Left Side: Architectural Cards -->
+    
+        <g transform="translate(60, 230)">
+            <rect width="480" height="56" rx="10" fill="#0F172A" fill-opacity="0.8" stroke="#1E293B" stroke-width="1.2"/>
+            <rect x="12" y="12" width="32" height="32" rx="8" fill="#1E293B" fill-opacity="0.6"/>
+            <text x="28" y="33" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38BDF8" text-anchor="middle">📉</text>
+            <text x="56" y="27" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="14" fill="#F8FAFC">Low-Rank Adaptation (LoRA)</text>
+            <text x="56" y="44" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Freezes base weights and trains rank decomposition matrices A and B.</text>
+        </g>
+        
+        <g transform="translate(60, 298)">
+            <rect width="480" height="56" rx="10" fill="#0F172A" fill-opacity="0.8" stroke="#1E293B" stroke-width="1.2"/>
+            <rect x="12" y="12" width="32" height="32" rx="8" fill="#1E293B" fill-opacity="0.6"/>
+            <text x="28" y="33" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38BDF8" text-anchor="middle">🧩</text>
+            <text x="56" y="27" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="14" fill="#F8FAFC">4-bit NormalFloat (NF4)</text>
+            <text x="56" y="44" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Information-theoretically optimal quantile quantization for weights.</text>
+        </g>
+        
+        <g transform="translate(60, 366)">
+            <rect width="480" height="56" rx="10" fill="#0F172A" fill-opacity="0.8" stroke="#1E293B" stroke-width="1.2"/>
+            <rect x="12" y="12" width="32" height="32" rx="8" fill="#1E293B" fill-opacity="0.6"/>
+            <text x="28" y="33" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38BDF8" text-anchor="middle">⚡</text>
+            <text x="56" y="27" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="14" fill="#F8FAFC">FlashAttention-2 Kernel</text>
+            <text x="56" y="44" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Fuses softmax and matrix multiplication to save 75% GPU VRAM.</text>
+        </g>
+        
+
+    <!-- Left Side: Quote Box -->
+    <g transform="translate(60, 440)">
+        <rect x="0" y="0" width="4" height="34" fill="#818CF8" rx="2" />
+        <text x="16" y="16" font-family="'Inter', sans-serif" font-style="italic" font-size="12" fill="#CBD5E1">"Fine-tuning is no longer about raw parameter counts; it&#x27;s about efficient rank adaptation."</text>
+        <text x="16" y="32" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#64748B">PRODUCTION BEST PRACTICE</text>
+    </g>
+
+    <!-- Left Side: Tag Pills -->
+    
+        <rect x="60" y="490" width="122" height="24" rx="12" fill="#1E293B" fill-opacity="0.7" stroke="#334155" stroke-width="0.8"/>
+        <text x="73" y="506" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC">• DeepLearning</text>
+        
+        <rect x="192" y="490" width="66" height="24" rx="12" fill="#1E293B" fill-opacity="0.7" stroke="#334155" stroke-width="0.8"/>
+        <text x="205" y="506" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC">• QLoRA</text>
+        
+        <rect x="268" y="490" width="82" height="24" rx="12" fill="#1E293B" fill-opacity="0.7" stroke="#334155" stroke-width="0.8"/>
+        <text x="281" y="506" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC">• PyTorch</text>
+        
+        <rect x="360" y="490" width="138" height="24" rx="12" fill="#1E293B" fill-opacity="0.7" stroke="#334155" stroke-width="0.8"/>
+        <text x="373" y="506" font-family="'JetBrains Mono', monospace" font-size="11" fill="#7DD3FC">• FlashAttention</text>
+        
+
+    <!-- Right Side: Terminal / Metrics Window Container -->
+    <g transform="translate(640, 190)">
+        <!-- Outer Window Box -->
+        <rect width="500" height="330" rx="16" fill="#090E17" fill-opacity="0.9" stroke="#1E293B" stroke-width="1.5" />
+        
+        <!-- Header Bar -->
+        <rect width="500" height="42" rx="16" fill="#0F172A" />
+        <rect y="26" width="500" height="16" fill="#0F172A" /> <!-- Flatten bottom corners -->
+        <line x1="0" y1="42" x2="500" y2="42" stroke="#1E293B" stroke-width="1" />
+
+        <!-- Window Controls -->
+        <circle cx="24" cy="21" r="5" fill="#EF4444" />
+        <circle cx="40" cy="21" r="5" fill="#F59E0B" />
+        <circle cx="56" cy="21" r="5" fill="#10B981" />
+
+        <text x="76" y="25" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">train-qlora.py</text>
+
+        <!-- Status Badge -->
+        <rect x="420" y="11" width="60" height="20" rx="6" fill="#064E3B" stroke="#059669" stroke-width="0.8" />
+        <text x="450" y="24" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#34D399" text-anchor="middle">STABLE</text>
+
+        <!-- Metrics Content -->
+        <g transform="translate(20, 20)">
+            
+        <g transform="translate(30, 110)">
+            <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">trainable-params</text>
+            <text x="360" y="0" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="14" fill="#38BDF8" text-anchor="end">0.24% of Total</text>
+            <line x1="0" y1="18" x2="360" y2="18" stroke="#1E293B" stroke-width="1" stroke-dasharray="3 3"/>
+        </g>
+        
+        <g transform="translate(30, 164)">
+            <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">vram-footprint</text>
+            <text x="360" y="0" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="14" fill="#34D399" text-anchor="end">14.2 GB (NF4)</text>
+            <line x1="0" y1="18" x2="360" y2="18" stroke="#1E293B" stroke-width="1" stroke-dasharray="3 3"/>
+        </g>
+        
+        <g transform="translate(30, 218)">
+            <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">tokens-per-sec</text>
+            <text x="360" y="0" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="14" fill="#C084FC" text-anchor="end">3,850 tok/s</text>
+            <line x1="0" y1="18" x2="360" y2="18" stroke="#1E293B" stroke-width="1" stroke-dasharray="3 3"/>
+        </g>
+        
+        <g transform="translate(30, 272)">
+            <text x="0" y="0" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94A3B8">eval-perplexity</text>
+            <text x="360" y="0" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="14" fill="#34D399" text-anchor="end">2.14 (-18%)</text>
+            <line x1="0" y1="18" x2="360" y2="18" stroke="#1E293B" stroke-width="1" stroke-dasharray="3 3"/>
+        </g>
+        
+        </g>
+    </g>
+
+    <!-- Footer Divider & Meta Details -->
+    <line x1="60" y1="570" x2="1140" y2="570" stroke="#1E293B" stroke-width="1" />
+    <text x="60" y="595" font-family="'JetBrains Mono', monospace" font-size="11" fill="#64748B" letter-spacing="1.5">DATA SCIENCE &amp; ML SYSTEMS</text>
+    <text x="600" y="595" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#94A3B8" text-anchor="middle">Huzaifa Sheikh • Engineering Deep-Dive</text>
+    <text x="1140" y="595" font-family="'JetBrains Mono', monospace" font-size="11" fill="#38BDF8" text-anchor="end">huzaifa-sheikh-portfolio.vercel.app</text>
+</svg>
